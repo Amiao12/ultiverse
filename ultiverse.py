@@ -74,7 +74,7 @@ class every_task:
             "feature": "assets-wallet-login",
             "chainId": 204
         }
-        res = await self.http.post('https://toolkit.ultiverse.io/api/user/signature', json=json_data)
+        res = await self.http.post('https://account-api.ultiverse.io/api/user/signature', json=json_data)
         if 'success' in res.text and res.json()['success']:
             message = res.json()['data']['message']
             signature = self.account.sign_message(encode_defunct(text=message))
@@ -95,7 +95,7 @@ class every_task:
           "signature": signature,
           "chainId": 204
       }
-      res = await self.http.post('https://toolkit.ultiverse.io/api/wallets/signin', json=json_data)
+      res = await self.http.post('https://account-api.ultiverse.io/api/wallets/signin', json=json_data)
       if 'success' in res.text and res.json()['success']:
           access_token = res.json()['data']['access_token']
           self.http.headers.update({"Ul-Auth-Token": access_token})
